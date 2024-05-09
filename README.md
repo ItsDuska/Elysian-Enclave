@@ -5,7 +5,7 @@
 
 
 ### Story
-The game follows a prospective student of Eldoria Magic Academy who accidentally ends up in the midst of emptiness through a magical portal near the village's ancient ruins. Here, the player hears the voice of an old wise wizard, who guides them out of the void into the material world, namely the Elysian Enclave. Here, guided by the voice of an ancient, wise wizard, the player finds themselves in the material world of Elysian Enclave. Armed with a new grimoire, they must explore and unravel the mysteries of this realm to return to their original world. But could this journey be a mere cycle, reminiscent of a samsara-like phenomenon?
+The game follows a prospective student of Eldoria Magic Academy who accidentally ends up in the midst of emptiness through a magical portal near the village's ancient ruins. Here, the player hears the voice of an old wise wizard, who guides them out of the void into the material world, namely the Elysian Enclave. Armed with a new grimoire, they must explore and unravel the mysteries of this realm to return to their original world. But could this journey be a mere cycle, reminiscent of a samsara-like phenomenon?
 
 
 ### Info
