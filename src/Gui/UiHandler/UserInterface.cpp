@@ -52,6 +52,10 @@ void gui::UserInterface::update()
             break;
         }
     }
+    if (!active && eventInfo.mousePressed)
+    {
+        eventInfo.mousePressed = false;
+    }
 }
 
 void gui::UserInterface::render(sf::RenderTarget& target)

@@ -19,7 +19,7 @@ esim world data ja settings eri hommaan?
 */
 
 
-class SaveManager
+class SaveHandler
 {
 public:
 	bool confirmFile(const char* filepath);
@@ -29,6 +29,14 @@ public:
 
 	//return data
 	void read(char* dataPtr, size_t dataSize, SaveDataType type);
+
+	static bool saveFileExists(const char* filepath);
+
+	static bool isDirectoryEmpty(const char* folderpath);
+	
+	static const std::filesystem::path recentlyEditedDirectory(const char* folderpath);
+
+	//void createWorldFile(const char* folderpath);
 
 private:
 	std::string filepath;

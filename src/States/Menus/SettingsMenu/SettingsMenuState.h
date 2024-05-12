@@ -5,8 +5,6 @@
 #include "Gui/UiHandler/UserInterface.h"
 #include "Gui/Buttons/Button.h"
 #include "Core/Save/SaveManager.h"
-#include <unordered_map>
-
 
 
 struct GameSettings
@@ -41,7 +39,7 @@ private:
 	sf::RenderTexture renderTexture;
 	float elapsedTime = 1.0f;
 
-	SaveManager save;
+	SaveHandler save;
 
 	GameSettings settings;
 	

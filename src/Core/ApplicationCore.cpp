@@ -13,7 +13,8 @@
 ApplicationCore::ApplicationCore()
 {
 	sf::VideoMode currentMode = sf::VideoMode::getDesktopMode();
-	window = std::make_unique<sf::RenderWindow>(currentMode, "Elysian Enclave", sf::Style::Default);
+	//sf::VideoMode currentMode = sf::VideoMode::getFullscreenModes()[0];
+	window = std::make_unique<sf::RenderWindow>(currentMode, "Elysian Enclave", sf::Style::Fullscreen);
 	window->setFramerateLimit(60u); // 60 default
 
 	sf::Vector2u uWindowSize = window->getSize();
@@ -59,7 +60,7 @@ void ApplicationCore::updateSFMLEvents()
 		case sf::Event::KeyPressed:
 			if (sfEvent.key.code == sf::Keyboard::Escape)
 			{
-				//window->close();
+				window->close();
 			}
 			break;
 		//case sf::Event::TextEntered:

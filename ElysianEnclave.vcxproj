@@ -113,7 +113,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\ollis\Documents\KoodiKirjastot\SFML-2.6.0\SFML-2.6.0\include;$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -131,7 +131,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\ollis\Documents\KoodiKirjastot\SFML-2.6.0\SFML-2.6.0\include;$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\States\Menus\SavesMenu\SavesMenuState.cpp" />
     <ClCompile Include="src\Core\Save\SaveManager.cpp" />
     <ClCompile Include="src\Helpers\EasingMath.cpp" />
     <ClCompile Include="src\States\Menus\SettingsMenu\SettingsMenuState.cpp" />
@@ -153,8 +154,10 @@
     <ClCompile Include="src\States\Menus\MainMenu\MainMenuState.cpp" />
     <ClCompile Include="src\States\State\StateManager.cpp" />
     <ClCompile Include="src\Gui\UiHandler\UserInterface.cpp" />
+    <ClCompile Include="src\States\Menus\WorldCreationMenu\WorldCreationMenuState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\States\Menus\SavesMenu\SavesMenuState.h" />
     <ClInclude Include="src\Core\Save\SaveManager.h" />
     <ClInclude Include="src\Gui\Widget.h" />
     <ClInclude Include="src\Helpers\EasingMath.h" />
@@ -167,6 +170,7 @@
     <ClInclude Include="src\States\State\State.h" />
     <ClInclude Include="src\States\State\StateManager.h" />
     <ClInclude Include="src\Gui\UiHandler\UserInterface.h" />
+    <ClInclude Include="src\States\Menus\WorldCreationMenu\WorldCreationMenuState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -4,6 +4,10 @@
 #include "Gui/GuiUtils.h"
 #include "States/Menus/SettingsMenu/SettingsMenuState.h"
 #include "Helpers/EasingMath.h"
+#include "States/Menus/SavesMenu/SavesMenuState.h"
+#include "States/Menus/WorldCreationMenu/WorldCreationMenuState.h"
+
+
 
 static void testFunc()
 {
@@ -11,11 +15,20 @@ static void testFunc()
 }
 
 MainMenuState::MainMenuState(StateManager* manager, sf::Vector2f& windowSize)
-    : context(std::make_shared<MenuContext>()),ui(5u)
+    : context(std::make_shared<MenuContext>()),ui(4u)
 {
     context->stateManager = manager;
     context->windowSize = windowSize;
     context->backgroundRect.setSize(windowSize);
+    if (!context->menuMusic.openFromFile("assets\\audio\\music\\mainMenu\\The dawn.mp3"))
+    {
+        std::cout << "ERROR: Failed to open mainMenu music file.\n";
+    }
+    context->menuMusic.setLoop(true);
+    context->menuMusic.setVolume(30.f);
+    context->menuMusic.setPitch(0.72f);
+    context->menuMusic.play();
+    
 
     if (!context->backgroundShader.loadFromFile(
         "assets\\shaders\\StarShader.vert",
@@ -112,15 +125,36 @@ void MainMenuState::initButtons()
 
     StateManager* states = context->stateManager;
 
+
+
+    std::string text;
+    std::function<void()> function;
+
+    if (SaveHandler::isDirectoryEmpty("world"))
+    {
+        text.assign("Arise");
+        function = [this]() {context->stateManager->addState(std::make_unique<WorldCreationMenuState>(context), true); };
+    }
+    else
+    {
+        text.assign("Continue");
+        //function = [this]() {context->stateManager->addState(std::make_unique<GameState>(context), true); };
+        //context->stateManager->addState(std::make_unique<GameState>(context,SaveManager::recentlyEditedDirectory("world")), true);
+    }
+
+
+
+
     ui.addWidget(
         std::make_unique<Button>(
             sf::Vector2f{0.5f,0.68f},
             context->windowSize,
             color,
             fontSize,
-            "Continue",
+            text,
             context->font,
-            testFunc // [states]() {
+            function
+            // TODO: JATKA SIITÄ MAAILMASTA MITÄ VIIMEKSI ON PELATTU, JOS SITÄ EI OLE NIIN LUO UUSI MAAILMA
             //states->addState(GameState game(params...));}
 
         )
@@ -132,10 +166,11 @@ void MainMenuState::initButtons()
             context->windowSize,
             color,
             fontSize,
-            "Saves",
+            "Load Save",
             context->font,
-            testFunc  // [states]() {
-            //states->addState(SavesMenuState saveFiles(params...));}
+            [this]() {
+                context->stateManager->addState(std::make_unique<SavesMenuState>(context), false);
+            }
         )
     );
 
