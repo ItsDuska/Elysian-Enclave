@@ -135,16 +135,20 @@ void MainMenuState::initButtons()
     std::string text;
     std::function<void()> function;
 
-    if (SaveHandler::isDirectoryEmpty("world"))
+    if (SaveHandler::isDirectoryEmpty("world/progression"))
     {
         text.assign("Arise");
         //function = [this]() {context->stateManager->addState(std::make_unique<WorldCreationMenuState>(context), true); };
 
+
+        context->menuMusic.~Music();
         // testiä varten menemme suoraan peliin
-        function = [this]() {context->stateManager->addState(std::make_unique<WorldCreationMenuState>(context->stateManager,context->windowSize), true); };
+        function = [this]() {context->stateManager->addState(std::make_unique<GameWorldState>(context->stateManager,context->windowSize), true); };
+
     }
     else
     {
+        context->menuMusic.~Music();
         text.assign("Continue");
         //function = [this]() {context->stateManager->addState(std::make_unique<GameState>(context), true); };
         //context->stateManager->addState(std::make_unique<GameState>(context,SaveManager::recentlyEditedDirectory("world")), true);

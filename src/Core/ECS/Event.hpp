@@ -16,7 +16,7 @@ private:
     static uint32_t counter;
 };
 
-uint32_t EventIDGenerator::counter = 0u;
+//uint32_t EventIDGenerator::counter = 0u;
 
 
 class EventManager
