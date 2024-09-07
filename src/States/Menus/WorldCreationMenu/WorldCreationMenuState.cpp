@@ -3,12 +3,12 @@
 WorldCreationMenuState::WorldCreationMenuState(std::shared_ptr<MenuContext>& menuContext)
 	: context(menuContext), ui(10u)
 {
-	const unsigned int NORMAL_FONT_SIZE = 50u;
-	const float SCALE = std::min(context->windowSize.x, context->windowSize.y) / 800.0f;
+	//const unsigned int NORMAL_FONT_SIZE = 50u;
+	//const float SCALE = std::min(context->windowSize.x, context->windowSize.y) / 800.0f;
 
-	const unsigned int fontSize = static_cast<unsigned int>(NORMAL_FONT_SIZE * SCALE);
+	//const unsigned int fontSize = static_cast<unsigned int>(NORMAL_FONT_SIZE * SCALE);
 
-	sf::Color color(34u, 38u, 65u, 76u);
+	//sf::Color color(34u, 38u, 65u, 76u);
 
 	
 	renderTexture.create(static_cast<unsigned int>(context->windowSize.x), static_cast<unsigned int>(context->windowSize.y));

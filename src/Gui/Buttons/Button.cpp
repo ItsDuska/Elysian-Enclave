@@ -22,11 +22,11 @@ void guiButton::BaseButton::calculatePosition(sf::Vector2f& position, sf::Vector
 void guiButton::BaseButton::setupCore(const sf::Color color,
 	const unsigned int charSize,
 	const std::string& buttonText,
-	const sf::Font& font,
+	const sf::Font* font,
 	std::function<void()> function
 )
 {
-	text.setFont(font);
+	text.setFont(*font);
 	text.setString(buttonText);
 	text.setCharacterSize(charSize);
 	text.setFillColor(sf::Color::White);
@@ -41,7 +41,7 @@ Button::Button(sf::Vector2f position,
 	const sf::Color color,
 	const unsigned int charSize,
 	const std::string& buttonText,
-	const sf::Font& font,
+	const sf::Font* font,
 	std::function<void()> function)
 {
 	this->onActivation = function;
@@ -82,7 +82,7 @@ TextButton::TextButton(sf::Vector2f position,
 	const sf::Color color,
 	const unsigned int charSize,
 	const std::string& buttonText,
-	const sf::Font& font,
+	const sf::Font* font,
 	std::function<void()> function,
 	const char* optionalDefaultAfterTextValue
 )

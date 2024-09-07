@@ -11,11 +11,11 @@ class StateManager;
 struct MenuContext
 {
     StateManager* stateManager;
+    sf::Font* font;
     sf::Vector2f windowSize;
     sf::RectangleShape backgroundRect;
     sf::Shader backgroundShader;
     sf::Clock clock;
-    sf::Font font;
     sf::Music menuMusic;
 };
 

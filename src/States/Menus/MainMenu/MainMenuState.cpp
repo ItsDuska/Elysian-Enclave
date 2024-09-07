@@ -6,7 +6,11 @@
 #include "Helpers/EasingMath.h"
 #include "States/Menus/SavesMenu/SavesMenuState.h"
 #include "States/Menus/WorldCreationMenu/WorldCreationMenuState.h"
+#include "Resources/FontHandler.h"
 
+
+// The real deal oh my my.... :clueless:
+#include "States/Game/GameState.h"
 
 
 static void testFunc()
@@ -113,10 +117,11 @@ void MainMenuState::initTextures()
 
 void MainMenuState::initButtons()
 {
-    if (!context->font.loadFromFile("assets\\fonts\\yoster.ttf"))
-    {
-        std::cout << "Error loading fonts!\n";
-    }
+    std::string filepath = "assets\\fonts\\yoster.ttf";
+
+    Global::FontHandler::load();
+    Global::FontHandler::addFont(filepath, Global::FontHandler::NORMAL_FONT);
+    context->font = &Global::FontHandler::getFont(Global::FontHandler::NORMAL_FONT);
     
     const unsigned int NORMAL_FONT_SIZE = 50u;
     const float SCALE = std::min(context->windowSize.x, context->windowSize.y) / 800.0f;
@@ -133,7 +138,10 @@ void MainMenuState::initButtons()
     if (SaveHandler::isDirectoryEmpty("world"))
     {
         text.assign("Arise");
-        function = [this]() {context->stateManager->addState(std::make_unique<WorldCreationMenuState>(context), true); };
+        //function = [this]() {context->stateManager->addState(std::make_unique<WorldCreationMenuState>(context), true); };
+
+        // testiä varten menemme suoraan peliin
+        function = [this]() {context->stateManager->addState(std::make_unique<WorldCreationMenuState>(context->stateManager,context->windowSize), true); };
     }
     else
     {
@@ -196,8 +204,9 @@ void MainMenuState::initButtons()
             fontSize,
             "Quit",
             context->font,
-            [states]() {
-                states->exitCall();
+            [this]() {
+                context->menuMusic.~Music();
+                context->stateManager->exitCall();
             }
         )
     );
@@ -211,7 +220,7 @@ void MainMenuState::initButtons()
 
 void MainMenuState::calculateLogoContext(sf::Text& text, int originalFontSize, sf::Vector2f& position)
 {
-    text.setFont(context->font);
+    text.setFont(*context->font);
     text.setOutlineColor(sf::Color::Black);
     text.setOutlineThickness(4);
 

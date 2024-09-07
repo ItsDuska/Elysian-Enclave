@@ -16,7 +16,7 @@ namespace guiButton
 		void setupCore(const sf::Color color,
 			const unsigned int charSize,
 			const std::string& buttonText,
-			const sf::Font& font,
+			const sf::Font* font,
 			std::function<void()> function
 		);
 
@@ -36,7 +36,7 @@ public:
 		const sf::Color color,
 		const unsigned int charSize,
 		const std::string& buttonText,
-		const sf::Font& font,
+		const sf::Font* font,
 		std::function<void()> function
 	);
 
@@ -53,7 +53,7 @@ public:
 		const sf::Color color,
 		const unsigned int charSize,
 		const std::string& buttonText,
-		const sf::Font& font,
+		const sf::Font* font,
 		std::function<void()> function,
 		const char* optionalDefaultAfterTextValue = nullptr
 	);
