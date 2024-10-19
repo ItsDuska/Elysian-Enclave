@@ -18,7 +18,7 @@ static void testFunc()
     std::cout << "Hello form button!\n";
 }
 
-MainMenuState::MainMenuState(StateManager* manager, sf::Vector2f& windowSize)
+MainMenuState::MainMenuState(StateManager* manager, sf::Vector2f& windowSize, sf::RenderWindow& window)
     : context(std::make_shared<MenuContext>()),ui(4u)
 {
     context->stateManager = manager;
@@ -43,7 +43,7 @@ MainMenuState::MainMenuState(StateManager* manager, sf::Vector2f& windowSize)
 
     context->backgroundShader.setUniform("u_resolution", windowSize);
     initTextures();
-    initButtons();
+    initButtons(window);
 
     renderTexture.create(context->windowSize.x, context->windowSize.y);
     renderAlpha = sf::Color(255, 255, 255, 0);
@@ -115,7 +115,7 @@ void MainMenuState::initTextures()
     magicCircle.setPosition(newPosition);
 }
 
-void MainMenuState::initButtons()
+void MainMenuState::initButtons(sf::RenderWindow& window)
 {
     std::string filepath = "assets\\fonts\\yoster.ttf";
 
@@ -140,11 +140,12 @@ void MainMenuState::initButtons()
         text.assign("Arise");
         //function = [this]() {context->stateManager->addState(std::make_unique<WorldCreationMenuState>(context), true); };
 
-
-        context->menuMusic.~Music();
         // testiä varten menemme suoraan peliin
-        function = [this]() {context->stateManager->addState(std::make_unique<GameWorldState>(context->stateManager,context->windowSize), true); };
-
+        function = [this,&window]() {
+            context->menuMusic.~Music();
+            context->stateManager->addState(std::make_unique<GameWorldState>(context->stateManager,context->windowSize,window), true);
+            
+        };
     }
     else
     {
@@ -153,9 +154,6 @@ void MainMenuState::initButtons()
         //function = [this]() {context->stateManager->addState(std::make_unique<GameState>(context), true); };
         //context->stateManager->addState(std::make_unique<GameState>(context,SaveManager::recentlyEditedDirectory("world")), true);
     }
-
-
-
 
     ui.addWidget(
         std::make_unique<Button>(
@@ -168,7 +166,6 @@ void MainMenuState::initButtons()
             function
             // TODO: JATKA SIITÄ MAAILMASTA MITÄ VIIMEKSI ON PELATTU, JOS SITÄ EI OLE NIIN LUO UUSI MAAILMA
             //states->addState(GameState game(params...));}
-
         )
     );
 

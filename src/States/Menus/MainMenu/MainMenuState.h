@@ -10,7 +10,7 @@ class StateManager;
 class MainMenuState : public State
 {
 public:
-    MainMenuState(StateManager* manager, sf::Vector2f& windowSize);
+    MainMenuState(StateManager* manager, sf::Vector2f& windowSize,sf::RenderWindow& window);
 
     void update(const float deltaTime) override;
     void render(sf::RenderTarget& window) override;
@@ -18,7 +18,7 @@ public:
     void handleEvent(sf::Event& event) override;
 private: 
     void initTextures();
-    void initButtons();
+    void initButtons(sf::RenderWindow& window);
     void calculateLogoContext(sf::Text& text, int originalFontSize, sf::Vector2f& position);
 private:
     std::shared_ptr<MenuContext> context;

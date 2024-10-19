@@ -28,9 +28,9 @@ public:
         void (Receiver::*receive)(const EventType&) = &Receiver::receive;
 
         auto callback = [receiver, receive](const void* event)
-            {
+        {
             (receiver->*receive)(*static_cast<const EventType*>(event));
-            };
+        };
 
         uint32_t eventID = EventIDGenerator::getID<EventType>();
         auto& subscribers = subscribers_[eventID];

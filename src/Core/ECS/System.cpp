@@ -16,6 +16,14 @@ void SystemManager::updateSystems(float dt)
 	}
 }
 
+void SystemManager::lateUpdateSystems()
+{
+	for (auto& pair : systems)
+	{
+		pair.second->render(entities);
+	}
+}
+
 void SystemManager::wake()
 {
 	for (auto& pair : systems)

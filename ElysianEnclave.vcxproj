@@ -155,7 +155,11 @@
     <ClCompile Include="src\Core\world\Tiles\LayeredTileHandler.cpp" />
     <ClCompile Include="src\Core\world\Tiles\VBOHandler.cpp" />
     <ClCompile Include="src\Core\world\WorldHandler.cpp" />
+    <ClCompile Include="src\Entities\BasicRenderSystem.cpp" />
+    <ClCompile Include="src\Entities\MovementSystem.cpp" />
+    <ClCompile Include="src\Entities\player\PlayerInput.cpp" />
     <ClCompile Include="src\Resources\FontHandler.cpp" />
+    <ClCompile Include="src\Resources\TextureHandler.cpp" />
     <ClCompile Include="src\States\Game\GameState.cpp" />
     <ClCompile Include="src\States\Menus\SavesMenu\SavesMenuState.cpp" />
     <ClCompile Include="src\Core\Save\SaveManager.cpp" />
@@ -186,7 +190,12 @@
     <ClInclude Include="src\Core\world\Tiles\LayeredTileHandler.h" />
     <ClInclude Include="src\Core\world\Tiles\VBOHandler.h" />
     <ClInclude Include="src\Core\world\WorldHandler.h" />
+    <ClInclude Include="src\Entities\BasicComponentData.h" />
+    <ClInclude Include="src\Entities\BasicRenderSystem.h" />
+    <ClInclude Include="src\Entities\MovementSystem.h" />
+    <ClInclude Include="src\Entities\player\PlayerInput.h" />
     <ClInclude Include="src\Resources\FontHandler.h" />
+    <ClInclude Include="src\Resources\TextureHandler.h" />
     <ClInclude Include="src\States\Game\GameState.h" />
     <ClInclude Include="src\States\Menus\SavesMenu\SavesMenuState.h" />
     <ClInclude Include="src\Core\Save\SaveManager.h" />

@@ -11,7 +11,7 @@ class BaseSystem
 {
 public:
     virtual void update(EntityManager& entities, EventManager& events, float dt) = 0;
-
+    virtual void render(EntityManager& entities){};
     virtual void wake(EventManager& events);
 
 protected:
@@ -39,6 +39,7 @@ class SystemManager
 public:
     SystemManager(EntityManager& entities, EventManager& events);
     void updateSystems(float dt);
+    void lateUpdateSystems();
 
     void wake();
 

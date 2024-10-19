@@ -93,6 +93,18 @@
     <ClCompile Include="src\Core\world\chunk\ChunkUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Entities\player\PlayerInput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entities\BasicRenderSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Resources\TextureHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entities\MovementSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\ApplicationCore.h">
@@ -186,6 +198,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Core\world\chunk\ChunkUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entities\BasicComponentData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entities\player\PlayerInput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entities\BasicRenderSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Resources\TextureHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entities\MovementSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

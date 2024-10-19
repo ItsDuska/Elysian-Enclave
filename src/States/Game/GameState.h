@@ -18,11 +18,14 @@
 class GameWorldState : public State
 {
 public:
-	GameWorldState(StateManager* manager, sf::Vector2f& windowSize);
+	GameWorldState(StateManager* manager, sf::Vector2f& windowSize, sf::RenderWindow& window);
+	~GameWorldState();
+
 	void update(const float deltaTime) override;
 	void render(sf::RenderTarget& window) override;
 	void wake() override;
 	void handleEvent(sf::Event& event) override;
+
 
 private:
 
@@ -41,5 +44,10 @@ private:
 	EventManager eventManager;
 	SystemManager systems;
 
-	
+	// TEMP
+	EntityID playerID;
+
+
+	sf::View camera;
+
 };

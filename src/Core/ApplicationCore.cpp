@@ -19,7 +19,7 @@ ApplicationCore::ApplicationCore()
 
 	sf::Vector2u uWindowSize = window->getSize();
 	sf::Vector2f windowSize(static_cast<float>(uWindowSize.x), static_cast<float>(uWindowSize.y));
-	states.addState(std::make_unique<MainMenuState>(&states, windowSize), false);
+	states.addState(std::make_unique<MainMenuState>(&states, windowSize,*window), false);
 }
 
 ApplicationCore::~ApplicationCore()
