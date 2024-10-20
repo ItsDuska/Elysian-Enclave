@@ -25,6 +25,12 @@ void Global::TextureHandler::add(std::string& filepath, std::string name)
 }
 
 
+void Global::TextureHandler::add(const std::string& filepath, std::string name)
+{
+	assert(instance);
+	instance->addTexctureFromInstance(filepath, name);
+}
+
 sf::Texture& Global::TextureHandler::get(std::string name)
 {
 	assert(instance);
@@ -46,7 +52,7 @@ Global::TextureHandler::~TextureHandler()
 {
 }
 
-void Global::TextureHandler::addTexctureFromInstance(std::string& filepath, std::string& name)
+void Global::TextureHandler::addTexctureFromInstance(const std::string& filepath, const std::string& name)
 {
 	sf::Texture texture;
 

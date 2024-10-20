@@ -14,14 +14,15 @@ namespace Global
 		static void load();
 		static void shutDown();
 
-		static void add(std::string& filepath, std::string name);
+		static void add(std::string& filepath, const std::string name);
+		static void add(const std::string& filepath, std::string name);
 		static sf::Texture& get(std::string& name);
 		static sf::Texture& get(std::string name);
 	private:
 		TextureHandler();
 		~TextureHandler();
 
-		void addTexctureFromInstance(std::string& filepath, std::string& name);
+		void addTexctureFromInstance(const std::string& filepath,const std::string& name);
 		sf::Texture& getTexctureFromInstance(std::string& name);
 
 		std::unordered_map<std::string, sf::Texture> textures;

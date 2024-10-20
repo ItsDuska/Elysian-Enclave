@@ -9,7 +9,6 @@
 #endif 
 
 
-
 ApplicationCore::ApplicationCore()
 {
 	sf::VideoMode currentMode = sf::VideoMode::getDesktopMode();

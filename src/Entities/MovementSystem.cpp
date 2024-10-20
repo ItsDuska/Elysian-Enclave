@@ -17,6 +17,8 @@ void MovementSystem::update(EntityManager& entities, EventManager& events, float
 
 void MovementSystem::acceleration(EntityComponent::RigidBody* rigidBody)
 {
+	// -- X DIRECTION --
+
 	rigidBody->velocity.x += rigidBody->acceleration * rigidBody->direction.x;
 
 	if (rigidBody->velocity.x > 0.f && rigidBody->velocity.x > rigidBody->maxVelocity)
@@ -28,10 +30,26 @@ void MovementSystem::acceleration(EntityComponent::RigidBody* rigidBody)
 	{
 		rigidBody->velocity.x = -rigidBody->maxVelocity;
 	}
+
+	// -- Y DIRECTION --
+
+	rigidBody->velocity.y += rigidBody->acceleration * rigidBody->direction.y;
+
+	if (rigidBody->velocity.y > 0.f && rigidBody->velocity.y > rigidBody->maxVelocity)
+	{
+		rigidBody->velocity.y = rigidBody->maxVelocity;
+	}
+
+	else if (rigidBody->velocity.y < 0.f && rigidBody->velocity.y < -rigidBody->maxVelocity)
+	{
+		rigidBody->velocity.y = -rigidBody->maxVelocity;
+	}
 }
 
 void MovementSystem::deceleration(EntityComponent::RigidBody* rigidBody)
 {
+	// -- X DIRECTION --
+
 	if (rigidBody->velocity.x > 0.f)
 	{
 		rigidBody->velocity.x -= rigidBody->deceleration;
@@ -51,4 +69,29 @@ void MovementSystem::deceleration(EntityComponent::RigidBody* rigidBody)
 			rigidBody->velocity.x = 0.f;
 		}
 	}
+
+
+	// -- Y DIRECTION --
+
+	if (rigidBody->velocity.y > 0.f)
+	{
+		rigidBody->velocity.y -= rigidBody->deceleration;
+
+		if (rigidBody->velocity.y < 0.f)
+		{
+			rigidBody->velocity.y = 0.f;
+		}
+	}
+
+	else if (rigidBody->velocity.y < 0.f)
+	{
+		rigidBody->velocity.y += rigidBody->deceleration;
+
+		if (rigidBody->velocity.y > 0.f)
+		{
+			rigidBody->velocity.y = 0.f;
+		}
+	}
+
+
 }

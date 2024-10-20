@@ -26,9 +26,6 @@ void BasicRenderSystem::render(EntityManager& entities)
 		transform->position = transform->futurePosition;
 
 		image->sprite.setPosition(transform->position);
-
-
 		target->draw(image->sprite);
-		std::cout << transform->position.x << "x " << transform->position.y << "\n";
 	}
 }

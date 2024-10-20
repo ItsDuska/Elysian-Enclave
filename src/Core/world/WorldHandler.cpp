@@ -13,17 +13,23 @@ TileWorldHandler::TileWorldHandler(EditorCreationInfo& info)
     );
 
     chunkHandler.loadFromFile("data/world/EpistePng.chunk");
-
+    animationHandler.constructTileBuffer(chunkHandler);
+    entity.constructTileBuffer(chunkHandler);
+    layer.constractBuffer(chunkHandler);
 }
 
 void TileWorldHandler::update(sf::Vector2f& position)
 {
 	chunkHandler.update(position);
-
+    
+    
 	if (chunkHandler.needsUpdate())
 	{
 		updateBuffers();
 	}
+
+    animationHandler.UpdateVATexCoords(chunkHandler);
+    entity.UpdateVATexCoords(chunkHandler);
 }
 
 void TileWorldHandler::render(sf::RenderTarget& window, bool shaderUniformShowVisibility)

@@ -5,16 +5,16 @@
 #include "Entities/BasicRenderSystem.h"
 #include "Entities/MovementSystem.h"
 #include "Resources/TextureHandler.h"
+#include "Entities/AnimationSystem.h"
+#include "Resources/loaders/EntitySpriteSheetAnimationLoader.h"
 
 
 GameWorldState::GameWorldState(StateManager* manager, sf::Vector2f& windowSize, sf::RenderWindow& window)
 	:stateManager(manager), windowSize(windowSize),systems(entityManager,eventManager)
 {
-	std::string TEMP_PLAYER_SPRITE_PATH = "C:/Users/ollis/Pictures/tempGoofy/and_thats_a_fact.png";
-
 	// setting texture manager...
 	Global::TextureHandler::load();
-	Global::TextureHandler::add(TEMP_PLAYER_SPRITE_PATH, "Player");
+	//Global::TextureHandler::add(TEMP_PLAYER_SPRITE_PATH, "Player");
 
 	const int TILE_SIZE = 12;
 
@@ -31,22 +31,36 @@ GameWorldState::GameWorldState(StateManager* manager, sf::Vector2f& windowSize, 
 	playerID = entityManager.newEnity();
 
 	EntityComponent::RigidBody* body = entityManager.addComponent<EntityComponent::RigidBody>(playerID);
-	body->maxVelocity = 5.5f;
-	body->acceleration = 1.05f;
-	body->deceleration = 0.4f;
+	body->maxVelocity = 3.3f;
+	body->acceleration = 1.04f;
+	body->deceleration = 0.3f;
 	EntityComponent::Transform* transform = entityManager.addComponent<EntityComponent::Transform>(playerID);
 	transform->position = { 0,200 };
 	EntityComponent::State* playerState = entityManager.addComponent<EntityComponent::State>(playerID);
 	EntityComponent::Speed* speed= entityManager.addComponent<EntityComponent::Speed>(playerID);
-	speed->speed = 0.55f;
+	speed->speed = 0.4;
 
 	EntityComponent::Image* image = entityManager.addComponent<EntityComponent::Image>(playerID);
-	image->sprite.setTexture(Global::TextureHandler::get("Player"));
+	//image->sprite.setTexture(Global::TextureHandler::get("Player"));
+
+
+	EntityComponent::Animation* animation = entityManager.addComponent<EntityComponent::Animation>(playerID);
+
+	std::string TEMP_PLAYER_SPRITE_PATH = "assets/sprites/enTiTies/player/PlayerAnimations.png";
+	std::filesystem::path guhPath = "assets/sprites/enTiTies/player/PlayerAnimations.png";
+	loaders::loadAnimationFromSpriteSheet(entityManager, playerID, guhPath);
+	//Global::TextureHandler::add(TEMP_PLAYER_SPRITE_PATH, "Player");
+
+	
+	animation->setAnimation(EntityComponent::Animation::AnimationArray::AnimationType::WALK_DOWN);
 
 	systems.add<MovementSystem>();
+	systems.add<AnimationSystem>();
 	systems.add<BasicRenderSystem>(&window);
+	systems.add<AnimationSystem>();
 	systems.wake();
 
+	camera.setSize(windowSize);
 }
 
 GameWorldState::~GameWorldState()
@@ -60,7 +74,6 @@ void GameWorldState::update(const float deltaTime)
 	
 	
 	this->camera.setCenter(sf::Vector2f((int)playerPosition.x, playerPosition.y));
-
 	handler->update(playerPosition);
 
 	PlayerInput::updatePlayerInput(entityManager, deltaTime);
@@ -74,8 +87,6 @@ void GameWorldState::render(sf::RenderTarget& window)
 
 
 	systems.lateUpdateSystems();
-	//sf::Sprite& sprite = entityManager.getComponentPtr<EntityComponent::Image>(playerID)->sprite;
-	//window.draw(sprite);
 }
 
 void GameWorldState::wake()
